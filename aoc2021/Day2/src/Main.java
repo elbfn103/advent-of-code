@@ -12,7 +12,7 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(input);
         String line = null;
 
-        Submarine submarine = new Submarine(0, 0);
+        Submarine submarine = new Submarine(0, 0, 0);
 
         while ( (line = bufferedReader.readLine()) != null) {
             submarine.moveSubmarine(line);

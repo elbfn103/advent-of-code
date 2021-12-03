@@ -2,6 +2,7 @@ public class Submarine {
 
     private long horizontalPos;
     private long depth;
+    private long aim;
 
     private enum Direction {
         forward, down, up;
@@ -16,9 +17,10 @@ public class Submarine {
         }
     }
 
-    public Submarine(long horizontalPos, long depth) {
+    public Submarine(long horizontalPos, long depth, long aim) {
         this.horizontalPos = horizontalPos;
         this.depth = depth;
+        this.aim = aim;
     }
 
     public void moveSubmarine(String input) {
@@ -30,10 +32,11 @@ public class Submarine {
         System.out.println(input);
         switch (direction) {
             case forward: this.horizontalPos += degree;
+            this.depth += (degree * aim);
             break;
-            case up: this.depth -= degree;
+            case down: this.aim += degree;
             break;
-            case down: this.depth += degree;
+            case up: this.aim -= degree;
             break;
         }
 
