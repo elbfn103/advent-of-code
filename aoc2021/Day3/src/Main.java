@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -10,15 +12,19 @@ public class Main {
 
         FileReader input = new FileReader(path);
         BufferedReader bufferedReader = new BufferedReader(input);
-        String line = bufferedReader.readLine();
-
-        Submarine submarine = new Submarine(0, 0, new int[line.length()]);
-        submarine.processDiagnostic(line);
+        String line = null;
+        List<String> lines = new ArrayList<>();
 
         while ( (line = bufferedReader.readLine()) != null) {
-            submarine.processDiagnostic(line);
+            lines.add(line);
         }
 
-        System.out.println(submarine.getPowerConsumption());
+        Submarine submarine = new Submarine("", "", "", "", new int[lines.get(0).length()]);
+
+        submarine.oxygenRating(lines);
+        submarine.co2Rating(lines);
+
+
+        System.out.println(submarine.getLifeSupportRating());
     }
 }
