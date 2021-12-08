@@ -34,26 +34,38 @@ public class Main {
       }
     }
 
-    boolean solved = false;
     Board ansBoard = new Board();
     int winningNum = 0;
     for (String s : order) {
-      for (Board board : boards) {
-        int num = Integer.parseInt(s);
-        board.solveBoard(num);
-        System.out.println(num);
-        System.out.println(board.getBoard());
-        board.checkBoard();
-        if (board.isSolved()) {
-          System.out.println(ansBoard.getBoard());
-          ansBoard = board;
-          solved = true;
-          winningNum = num;
+
+      int num = Integer.parseInt(s);
+
+      if (boards.size() == 1) {
+        ansBoard = boards.get(0);
+        ansBoard.solveBoard(num);
+        ansBoard.checkBoard();
+
+        if (ansBoard.isSolved()) {
+          winningNum = Integer.parseInt(s);
           break;
         }
-      }
-      if (solved) {
-        break;
+        System.out.println(ansBoard.getBoard());
+      } else {
+        List<Board> toRemove = new ArrayList<>();
+
+        System.out.println("Boards being checked for " + num);
+        for (Board board : boards) {
+          System.out.println(board.getBoard());
+          board.solveBoard(num);
+          board.checkBoard();
+          if (board.isSolved()) {
+            toRemove.add(board);
+          }
+        }
+
+        for (Board board : toRemove) {
+          boards.remove(board);
+        }
       }
     }
 

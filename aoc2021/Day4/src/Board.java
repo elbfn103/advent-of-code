@@ -32,11 +32,10 @@ public class Board {
     for (int i = 0; i < board.size(); i++) {
       List<String> row = board.get(i);
       List<String> column = getColumn(i);
-      solved = row.stream().allMatch("0"::equals)
-          || column.stream().allMatch("0"::equals);
-      System.out.println(column);
       // OMG!!!!!!!! NOT HAVING THIS RETURN EARLY WHEN FOUND SCREWED ME SO HARD
-      if (solved) {
+      if (row.stream().allMatch("0"::equals)
+          || column.stream().allMatch("0"::equals)) {
+        solved = true;
         return;
       }
     }
