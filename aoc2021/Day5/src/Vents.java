@@ -9,7 +9,7 @@ public class Vents {
   }
 
   private void initVentMap() {
-    int[][] temp = new int[1000][1000];
+    int[][] temp = new int[1001][1001];
     for (int i = 0; i < 1000; i++) {
       for (int j = 0; j < 1000; j++) {
         temp[i][j] = 0;
@@ -32,8 +32,6 @@ public class Vents {
         }
       }
 
-      System.out.println("vertical line added from: " + coords[1] + " to " + coords[3]);
-
     } else if (coords[1] == coords[3]) {
 
       if (coords[0] > coords[2]) {
@@ -46,8 +44,52 @@ public class Vents {
         }
       }
 
-      System.out.println("horizontal line added from: " + coords[0] + " to " + coords[2]);
+    } else if (Math.abs(coords[0] - coords[2]) == Math.abs(coords[1] - coords[3])) {
 
+      // x is increasing/decreasing
+      if (coords[0] < coords[2]) {
+
+        // y is increasing/decreasing
+        if (coords[1] < coords[3]) {
+          int j = coords[1];
+          for (int i = coords[0]; i <= coords[2]; i++) {
+            ventMap[i][j]++;
+            j++;
+          }
+        } else {
+          int j = coords[1];
+          for (int i = coords[0]; i <= coords[2]; i++) {
+            ventMap[i][j]++;
+            j--;
+          }
+        }
+
+//        System.out.println(
+//            "diagonal line added from: (" + coords[0] + ", " + coords[1] + ") to (" + coords[2]
+//                + ", " + coords[3] + ")");
+
+      } else {
+
+        // y is increasing/decreasing
+        if (coords[1] < coords[3]) {
+          int j = coords[1];
+          for (int i = coords[0]; i >= coords[2]; i--) {
+            ventMap[i][j]++;
+            j++;
+          }
+        } else {
+          int j = coords[1];
+          for (int i = coords[0]; i >= coords[2]; i--) {
+            ventMap[i][j]++;
+            j--;
+          }
+        }
+
+//        System.out.println(
+//            "diagonal line added from: (" + coords[2] + ", " + coords[3] + ") to (" + coords[0]
+//                + ", " + coords[1] + ")");
+
+      }
     }
   }
 

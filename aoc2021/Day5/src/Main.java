@@ -35,8 +35,16 @@ public class Main {
       }
     }
 
+//    int counter = 0;
     for (int[] coords : ventCoords) {
       vents.addVent(coords);
+//      counter++;
+//      if (counter == 4) {
+//        break;
+//      }
+//      for (int[] row : vents.getVentMap()) {
+//        System.out.println(Arrays.toString(row));
+//      }
     }
 
     vents.checkVents();
